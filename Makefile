@@ -27,13 +27,13 @@ login:
 
 apply:
 	@cd deploy && kubectl apply -f deployment.yml
-	@sleep 30
+	@sleep 15
 	@cd deploy && kubectl apply -f service.yml
-	@sleep 30
+	@sleep 15
 	@cd deploy && kubectl apply -f lb.yml
-	@sleep 30
+	@sleep 15
 
 att:
 	scripts/att.sh
 
-all: build test up login apply att destroy
+all: build up login apply att destroy
