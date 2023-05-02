@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -11,6 +12,15 @@ func allTheThings() string {
 	return json
 }
 
+// func main() {
+// 	fmt.Print(allTheThings())
+// }
+
 func main() {
-	fmt.Print(allTheThings())
+	http.HandleFunc("/", handler)
+	http.ListenAndServe(":8080", nil)
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, allTheThings())
 }
