@@ -17,7 +17,7 @@ up:
 	@sleep 300 # give everything a moment to settle
 
 destroy:
-	@cd deploy && kubectl delete service ingress-att || true
+	@cd deploy && kubectl delete ingress ingress-att || true
 	@cd deploy && kubectl delete service backend-service || true
 	@cd deploy && kubectl delete deployment att || true
 	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk destroy --force
@@ -35,5 +35,14 @@ apply:
 
 att:
 	scripts/att.sh
+
+prereqs:
+	@aws --version  > /dev/null 2>&1 || echo "you need the AWS CLI installed"
+	@cdk --version   > /dev/null 2>&1 || echo "you need the AWS CDK installed"
+	@jq --version   > /dev/null 2>&1 || echo "you need jq installed"
+	@docker --version   > /dev/null 2>&1 || echo "you need docker installed"
+	@kubectl help   > /dev/null 2>&1 || echo "you need kubectl installed"
+	@go version   > /dev/null 2>&1 || echo "you need go installed"
+
 
 all: build up login apply att destroy

@@ -19,6 +19,12 @@ tl;dr `make all` and then go run some errands because it is going to take a whil
 
 Everything is controlled via `make` commands. 
 
+**Do you have everything you need installed?**
+```
+make prereqs
+```
+Will print out any missing prerequisites you need.
+
 **Build and run locally**
 ```
 make build
