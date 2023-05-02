@@ -3,7 +3,7 @@
 This is the sample project for my interview at **[REDACTED]**. It builds an AWS EKS cluster and then deploys a simple go app to it. 
 
 ### Prereqs
-You're going to need a _few_ things installed and configured to make this work. This was all tested on an OSX laptop running zsh; running it on other OSes might work but no promises. :upside-down-face:
+You're going to need a _few_ things installed and configured to make this work. This was all tested on an OSX laptop running zsh; running it on other OSes might work but no promises. 🙃
 
 * [AWS CLI](https://aws.amazon.com/cli/), with `aws configure` run to point it at the account and region you'd like to test with.
 * [AWS CDK](https://aws.amazon.com/cdk/), but the Makefile will handle bootstrapping for the region you're in.
@@ -41,6 +41,12 @@ make att       # calls the endpoint
 make destroy   # cleans up everything
 ```
 
+**Run everything**
+```
+make all
+```
+
+This will do most everything above, skipping the local integration test. 
 
 ### Directory structure
 
@@ -62,5 +68,5 @@ Despite the `prereqs` section being as long as it is, I did _try_ to limit the a
 
 That also included not building a deployment pipeline either, which gives me the heebie jeebies. I tried to break the `make` targets down so that they'd be easy to translate into a pipeline if one is desired at a later date.
 
-This project used the [AWS CDK EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/), a quick start for running EKS in AWS with CDK. While the EKS Blueprints gave me an EKS cluster and everything else necessary very easily, it also gave me the better part of a gig of node dependencies and was very much a black box. Luckily I did not need to do a lot of tweaking of the cluster, but I am not sure I'd use in a production situation.
+This project used the [AWS CDK EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/), a quick start for running EKS in AWS with CDK. While the EKS Blueprints gave me an EKS cluster and everything else necessary very easily, it also gave me the better part of a gig of node dependencies and was very much a black box. Fortunately, I did not need to do a lot of tweaking of the cluster, but I am not sure I'd use in a production situation. Unfortunately, it sometimes had a hard time cleaning up the stack resources, which I did end up doing quite a few times.
 
