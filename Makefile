@@ -19,7 +19,7 @@ test:
 	@integration_test/test.sh
 
 up:
-	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk deploy --region us-west-2 --require-approval never
+	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk deploy --require-approval never
 	@echo "giving everything a few minutes to settle"
 	@sleep 300 # give everything a moment to settle
 
