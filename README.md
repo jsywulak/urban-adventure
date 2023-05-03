@@ -15,7 +15,7 @@ You're going to need a _few_ things installed and configured to make this work. 
 
 ### How to run it
 
-tl;dr `make prereqs bootstrap all` and then go run some errands because it is going to take a while.
+tl;dr `make prereqs bootstrap all destroy` and then go run some errands because it is going to take a while.
 
 Everything is controlled via `make` commands. 
 
@@ -76,7 +76,7 @@ What goes where why
 |- deploy           # where the k8s yaml lives
 |- infra            # where the CDK configuration lives
 |- integration_test # where the single integration test lives
-|- scripts          # where everything too complicated to go into the Makefile lives
+\- scripts          # where everything too complicated to go into the Makefile lives
 
 ```
 

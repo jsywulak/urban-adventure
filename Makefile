@@ -58,4 +58,4 @@ clean:
 	# this is created during bootstrap step
 	@aws ecr delete-repository --repository-name att | jq .
 
-all: build up login push apply att destroy
+all: build up login push apply att 
