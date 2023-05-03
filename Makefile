@@ -6,6 +6,9 @@ build:
 	go build -o bin/att att.go
 	docker build -t att .
 
+push:
+	scripts/tag-and-push.sh
+
 bootstrap: createrepo
 	scripts/bootstrap.sh
 
@@ -15,16 +18,10 @@ local:
 test: 
 	@integration_test/test.sh
 
-createrepo:
-	@aws ecr create-repository --repository-name attrepo | jq .
-
-deleterepo:
-	@aws ecr delete-repository --repository-name attrepo | jq .
-
 up:
 	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk deploy --region us-west-2 --require-approval never
 	@echo "giving everything a few minutes to settle"
-# 	@sleep 300 # give everything a moment to settle
+	@sleep 300 # give everything a moment to settle
 
 destroy:
 	@cd deploy && kubectl delete ingress ingress-att || true
@@ -54,5 +51,11 @@ prereqs:
 	@kubectl help   > /dev/null 2>&1 || echo "you need kubectl installed"
 	@go version   > /dev/null 2>&1 || echo "you need go installed"
 
+clean: destroy
+	docker kill $(docker ps -q)
+	docker rmi -f $(docker images -a -q)
+	docker system prune -af
+	# this is created during bootstrap step
+	@aws ecr delete-repository --repository-name att | jq .
 
-all: build up login apply att destroy
+all: build up login push apply att destroy
