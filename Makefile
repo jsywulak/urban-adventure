@@ -9,7 +9,7 @@ build:
 push:
 	scripts/tag-and-push.sh
 
-bootstrap: createrepo
+bootstrap: 
 	scripts/bootstrap.sh
 
 local:
