@@ -7,8 +7,8 @@ region=$(aws configure get region)
 
 files=(./deploy/deployment.yml ./scripts/tag-and-push.sh ./scripts/login.sh)
 for file in $files; do
-	sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" <file>
-	sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" <file>
+	sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" $file
+	sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" $file
 done
 
 JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true cdk bootstrap aws://${account}/${region} 
