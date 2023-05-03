@@ -8,12 +8,17 @@ region=$(aws configure get region)
 echo "account number: ${account}"
 echo "region: ${region}"
 
-files=("./deploy/deployment.yml" "./scripts/tag-and-push.sh" "./scripts/login.sh" "./infra/bin/infra.ts")
-for file in $files; do
-	echo updating $file...
-	sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" $file
-	sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" $file
-done
+sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" ./deploy/deployment.yml
+sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" ./deploy/deployment.yml
+
+sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" ./scripts/tag-and-push.sh
+sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" ./scripts/tag-and-push.sh
+
+sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" ./scripts/login.sh
+sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" ./scripts/login.sh
+
+sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" ./infra/bin/infra.ts
+sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" ./infra/bin/infra.ts
 
 JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true cdk bootstrap aws://${account}/${region} 
 
