@@ -45,6 +45,7 @@ att:
 
 prereqs:
 	@aws --version  > /dev/null 2>&1 || echo "you need the AWS CLI installed"
+	@aws sts get-caller-identity 2>&1 > /dev/null || echo "you need to configure the AWS CLI"
 	@cdk --version   > /dev/null 2>&1 || echo "you need the AWS CDK installed"
 	@jq --version   > /dev/null 2>&1 || echo "you need jq installed"
 	@docker --version   > /dev/null 2>&1 || echo "you need docker installed"

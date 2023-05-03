@@ -5,8 +5,12 @@
 account=$(aws sts get-caller-identity | jq -r .Account)
 region=$(aws configure get region)
 
-files=(./deploy/deployment.yml ./scripts/tag-and-push.sh ./scripts/login.sh)
+echo "account number: ${account}"
+echo "region: ${region}"
+
+files=("./deploy/deployment.yml" "./scripts/tag-and-push.sh" "./scripts/login.sh" "./infra/bin/infra.ts")
 for file in $files; do
+	echo updating $file...
 	sed -i '' -e "s/ACCOUNT_NUMBER_TOKEN/${account}/g" $file
 	sed -i '' -e "s/AWS_REGION_TOKEN/${region}/g" $file
 done
