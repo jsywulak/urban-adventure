@@ -52,9 +52,8 @@ prereqs:
 	@go version   > /dev/null 2>&1 || echo "you need go installed"
 
 clean: destroy
-	docker kill $(docker ps -q)
-	docker rmi -f $(docker images -a -q)
-	docker system prune -af
+	docker rmi -f $(docker images -a -q) || true
+	docker system prune -af || true
 	# this is created during bootstrap step
 	@aws ecr delete-repository --repository-name att | jq .
 
