@@ -1,8 +1,8 @@
 {
-  "availability-zones:account=207188242297:region=eu-west-2": [
-    "eu-west-2a",
-    "eu-west-2b",
-    "eu-west-2c"
+  "availability-zones:account=ACCOUNT_NUMBER_TOKEN:region=AWS_REGION_TOKEN": [
+    "AWS_REGION_TOKENa",
+    "AWS_REGION_TOKENb",
+    "AWS_REGION_TOKENc"
   ],
   "acknowledged-issue-numbers": [
     null,

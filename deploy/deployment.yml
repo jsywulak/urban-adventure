@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: back-end
-          image: 207188242297.dkr.ecr.eu-west-2.amazonaws.com/att:latest
+          image: ACCOUNT_NUMBER_TOKEN.dkr.ecr.AWS_REGION_TOKEN.amazonaws.com/att:latest
           ports:
             - containerPort: 8080

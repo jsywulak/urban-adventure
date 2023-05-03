@@ -6,15 +6,25 @@ build:
 	go build -o bin/att att.go
 	docker build -t att .
 
+bootstrap: createrepo
+	scripts/bootstrap.sh
+
 local:
 	docker run -p 8080:8080 att
 
 test: 
 	@integration_test/test.sh
 
+createrepo:
+	@aws ecr create-repository --repository-name attrepo | jq .
+
+deleterepo:
+	@aws ecr delete-repository --repository-name attrepo | jq .
+
 up:
-	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk deploy --require-approval never
-	@sleep 300 # give everything a moment to settle
+	@cd infra && JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=true time cdk deploy --region us-west-2 --require-approval never
+	@echo "giving everything a few minutes to settle"
+# 	@sleep 300 # give everything a moment to settle
 
 destroy:
 	@cd deploy && kubectl delete ingress ingress-att || true

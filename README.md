@@ -25,6 +25,12 @@ make prereqs
 ```
 Will print out any missing prerequisites you need.
 
+**Bootstrap for first run**
+```
+make bootstrap
+```
+Will set up CDK and set the region and account number everywhere its needed. 
+
 **Build and run locally**
 ```
 make build
