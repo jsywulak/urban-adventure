@@ -15,7 +15,7 @@ You're going to need a _few_ things installed and configured to make this work. 
 
 ### How to run it
 
-tl;dr `make all` and then go run some errands because it is going to take a while.
+tl;dr `make bootstrap all` and then go run some errands because it is going to take a while.
 
 Everything is controlled via `make` commands. 
 
@@ -82,3 +82,4 @@ That also included not building a deployment pipeline either, which gives me the
 
 This project used the [AWS CDK EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/), a quick start for running EKS in AWS with CDK. While the EKS Blueprints gave me an EKS cluster and everything else necessary very easily, it also gave me the better part of a gig of node dependencies and was very much a black box. Fortunately, I did not need to do a lot of tweaking of the cluster, but I am not sure I'd use in a production situation. Unfortunately, it sometimes had a hard time cleaning up the stack resources, which I did end up doing quite a few times.
 
+To make this "one click" I do a search and replace to insert the region and account ID where it's needed. This was a pain to set up and maintain, but since it was in the yaml files as well I couldn't just make in an environment var. This probably wouldn't have been as big of an issue in a production environment, since we could more reliably assume where the ECR repo would live. 
