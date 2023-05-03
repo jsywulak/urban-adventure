@@ -15,7 +15,7 @@ You're going to need a _few_ things installed and configured to make this work. 
 
 ### How to run it
 
-tl;dr `make bootstrap all` and then go run some errands because it is going to take a while.
+tl;dr `make prereqs bootstrap all` and then go run some errands because it is going to take a while.
 
 Everything is controlled via `make` commands. 
 
@@ -29,7 +29,7 @@ Will print out any missing prerequisites you need.
 ```
 make bootstrap
 ```
-Will set up CDK and set the region and account number everywhere its needed. 
+Will set up CDK and set the region and account number everywhere its needed. It will also create the ECR repo.
 
 **Build and run locally**
 ```
@@ -49,7 +49,7 @@ This will start the container, run the integration test against it, and then kil
 make up        # standup the cloud resources, including the EKS cluster
 make login     # login to the ECR repo
 make apply     # deploys the container and assisting services to the EKS cluster
-make att       # calls the endpoint
+make att       # simple test that calls the endpoint
 make destroy   # cleans up everything
 ```
 
@@ -59,6 +59,12 @@ make all
 ```
 
 This will do most everything above, skipping the local integration test. 
+
+**Clean up**
+```
+make clean
+```
+This will nuke all your local images, so you may not want to run it. 
 
 ### Directory structure
 

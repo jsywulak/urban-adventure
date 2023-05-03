@@ -51,7 +51,7 @@ prereqs:
 	@kubectl help   > /dev/null 2>&1 || echo "you need kubectl installed"
 	@go version   > /dev/null 2>&1 || echo "you need go installed"
 
-clean: destroy
+clean: 
 	docker rmi -f $(docker images -a -q) || true
 	docker system prune -af || true
 	# this is created during bootstrap step
