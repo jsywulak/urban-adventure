@@ -84,6 +84,8 @@ What goes where why
 ### What I'd Do Differently
 Despite the `prereqs` section being as long as it is, I did _try_ to limit the amount of tools I used. In a real project, I would've opted for something like Helm to handle the deployments to the Kubernetes cluster, and some sort of testing tool more advanced that bash script to handle the integration testing. 
 
+The testing can be particularly improved; right now it's just testing "does the endpoint work" which does mean everything else is working too, but if the endpoint _wasn't_ working, it doesn't help you figure out why. Tests for the actual AWS resources (perhaps using awspec or similar) would confirm that everything is wired togetherly correctly, and then perhaps some tests to confirm that the k8s deployments are configured correctly would be very helpful. 
+
 That also included not building a deployment pipeline either, which gives me the heebie jeebies. I tried to break the `make` targets down so that they'd be easy to translate into a pipeline if one is desired at a later date.
 
 This project used the [AWS CDK EKS Blueprints](https://aws-quickstart.github.io/cdk-eks-blueprints/), a quick start for running EKS in AWS with CDK. While the EKS Blueprints gave me an EKS cluster and everything else necessary very easily, it also gave me the better part of a gig of node dependencies and was very much a black box. Fortunately, I did not need to do a lot of tweaking of the cluster, but I am not sure I'd use in a production situation. Unfortunately, it sometimes had a hard time cleaning up the stack resources, which I did end up doing quite a few times.
