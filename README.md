@@ -84,7 +84,7 @@ What goes where why
 ### What I'd Do Differently
 Despite the `prereqs` section being as long as it is, I did _try_ to limit the amount of tools I used. In a real project, I would've opted for something like Helm to handle the deployments to the Kubernetes cluster, and some sort of testing tool more advanced that bash script to handle the integration testing. 
 
-The testing can be particularly improved; right now it's just testing "does the endpoint work" which does mean everything else is working too, but if the endpoint _wasn't_ working, it doesn't help you figure out why. Tests for the actual AWS resources (perhaps using awspec or similar) would confirm that everything is wired togetherly correctly, and then perhaps some tests to confirm that the k8s deployments are configured correctly would be very helpful. 
+The testing can be particularly improved; right now it's just testing "does the endpoint work" which does mean everything else is working too, but if the endpoint _wasn't_ working, it doesn't help you figure out why. Tests for the actual AWS resources (perhaps using awspec or similar) would confirm that everything is wired together correctly, and then perhaps some tests to confirm that the k8s deployments are configured correctly would be very helpful. 
 
 That also included not building a deployment pipeline either, which gives me the heebie jeebies. I tried to break the `make` targets down so that they'd be easy to translate into a pipeline if one is desired at a later date.
 
