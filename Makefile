@@ -56,6 +56,6 @@ clean:
 	docker rmi -f $(docker images -a -q) || true
 	docker system prune -af || true
 	# this is created during bootstrap step
-	@aws ecr delete-repository --repository-name att | jq .
+	@aws ecr delete-repository --repository-name att --force | jq .
 
 all: build up login push apply att 
